@@ -99,7 +99,6 @@
       align-items: center;
       justify-content: space-between;
       box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-      text-decoration: none;
       cursor: pointer;
       border: 2px solid transparent;
       transition: border-color 0.2s;
@@ -169,6 +168,14 @@
       color: #6c3fc5;
       font-weight: bold;
     }
+
+    .section-divider {
+      font-size: 12px;
+      color: #aaa;
+      text-align: center;
+      margin: 4px 0 12px;
+      letter-spacing: 1px;
+    }
   </style>
 </head>
 <body>
@@ -190,7 +197,7 @@
     <button class="btn-search" onclick="updateLinks()">キーワードを更新</button>
   </div>
 
-  <div class="section-title">📦 サイトを選んで検索</div>
+  <div class="section-title">🛒 ショッピングサイト</div>
   <div class="keyword-display">検索ワード：<span id="currentKeyword">ボンボンドロップシール</span></div>
 
   <div class="sites-grid">
@@ -228,11 +235,71 @@
       <div class="site-arrow">›</div>
     </div>
 
+    <div class="site-card" onclick="openSite('yodobashi')">
+      <div class="site-left">
+        <div class="site-icon" style="background:#f0f8ff;">📷</div>
+        <div>
+          <div class="site-name">ヨドバシカメラ</div>
+          <div class="site-desc">在庫・価格をチェック</div>
+        </div>
+      </div>
+      <div class="site-arrow">›</div>
+    </div>
+
+    <div class="site-card" onclick="openSite('narumiya')">
+      <div class="site-left">
+        <div class="site-icon" style="background:#fff0f8;">👗</div>
+        <div>
+          <div class="site-name">ナルミヤオンライン</div>
+          <div class="site-desc">公式サイトをチェック</div>
+        </div>
+      </div>
+      <div class="site-arrow">›</div>
+    </div>
+
+    <div class="site-card" onclick="openSite('spinns')">
+      <div class="site-left">
+        <div class="site-icon" style="background:#f8f0ff;">👕</div>
+        <div>
+          <div class="site-name">スピンズ</div>
+          <div class="site-desc">公式サイトをチェック</div>
+        </div>
+      </div>
+      <div class="site-arrow">›</div>
+    </div>
+
+    <div class="site-card" onclick="openSite('coolia')">
+      <div class="site-left">
+        <div class="site-icon" style="background:#f0fff8;">🎀</div>
+        <div>
+          <div class="site-name">クーリア</div>
+          <div class="site-desc">公式サイトをチェック</div>
+        </div>
+      </div>
+      <div class="site-arrow">›</div>
+    </div>
+
+  </div>
+
+  <div class="section-title">🏷 フリマサイト</div>
+  <div class="sites-grid">
+
     <div class="site-card" onclick="openSite('mercari')">
       <div class="site-left">
         <div class="site-icon" style="background:#f0fff4;">🏷</div>
         <div>
           <div class="site-name">メルカリ</div>
+          <div class="site-desc">フリマ・中古をチェック</div>
+        </div>
+      </div>
+      <div class="site-arrow">›</div>
+    </div>
+
+    <div class="site-card" onclick="openSite('yahooflea')">
+      <div class="site-left">
+        <div class="site-icon" style="background:#fff8f0;">💰</div>
+        <div>
+          <div class="site-name">ヤフーフリマ</div>
           <div class="site-desc">フリマ・中古をチェック</div>
         </div>
       </div>
@@ -245,10 +312,15 @@
 
   <script>
     const urls = {
-      amazon:  kw => `https://www.amazon.co.jp/s?k=${encodeURIComponent(kw)}`,
-      rakuten: kw => `https://search.rakuten.co.jp/search/mall/${encodeURIComponent(kw)}/`,
-      yahoo:   kw => `https://shopping.yahoo.co.jp/search?p=${encodeURIComponent(kw)}&tab=all`,
-      mercari: kw => `https://jp.mercari.com/search?keyword=${encodeURIComponent(kw)}`,
+      amazon:    kw => `https://www.amazon.co.jp/s?k=${encodeURIComponent(kw)}`,
+      rakuten:   kw => `https://search.rakuten.co.jp/search/mall/${encodeURIComponent(kw)}/`,
+      yahoo:     kw => `https://shopping.yahoo.co.jp/search?p=${encodeURIComponent(kw)}&tab=all`,
+      yodobashi: kw => `https://www.yodobashi.com/?word=${encodeURIComponent(kw)}`,
+      narumiya:  kw => `https://www.narumiyaonline.jp/shop/goods/search.aspx?search=${encodeURIComponent(kw)}`,
+      spinns:    kw => `https://spinns.com/search?type=product&q=${encodeURIComponent(kw)}`,
+      coolia:    kw => `https://www.coolia.jp/search?q=${encodeURIComponent(kw)}`,
+      mercari:   kw => `https://jp.mercari.com/search?keyword=${encodeURIComponent(kw)}`,
+      yahooflea: kw => `https://flea.yahoo.co.jp/search/item/list?q=${encodeURIComponent(kw)}`,
     };
 
     function getKeyword() {
