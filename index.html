@@ -308,11 +308,11 @@
       rakuten:   kw => `https://search.rakuten.co.jp/search/mall/${encodeURIComponent(kw)}/`,
       yahoo:     kw => `https://shopping.yahoo.co.jp/search?p=${encodeURIComponent(kw)}&tab=all`,
       yodobashi: kw => `https://www.yodobashi.com/?word=${encodeURIComponent(kw)}`,
-      narumiya:  kw => `https://www.google.com/search?q=${encodeURIComponent(kw)}+site:narumiya-online.jp`,
-      spinns:    kw => `https://www.spinns.jp/search?q=${encodeURIComponent(kw)}`,
-      coolia:    kw => `https://qlia.shop/search?q=${encodeURIComponent(kw)}`,
+      narumiya:  kw => `https://www.narumiya-online.jp/shop/goods/search.aspx?sort=new&keyword=${encodeURIComponent(kw)}&search=search&amount_s=&amount_e=`,
+      spinns:    kw => `https://www.spinns.jp/p/search?sort=latest&keyword=${encodeURIComponent(kw)}&minprice=&maxprice=&tag=&tag=`,
+      coolia:    kw => `https://qlia.shop/?mode=srh&sort=n&keyword=${encodeURIComponent(kw)}`,
       mercari:   kw => `https://jp.mercari.com/search?keyword=${encodeURIComponent(kw)}`,
-      yahooflea: kw => `https://paypayfleamarket.yahoo.co.jp/search?query=${encodeURIComponent(kw)}`,
+      yahooflea: kw => `https://paypayfleamarket.yahoo.co.jp/search/${encodeURIComponent(kw)}?page=1`,
     };
 
     function getKeyword() {
