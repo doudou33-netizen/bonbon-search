@@ -99,7 +99,6 @@
       align-items: center;
       justify-content: space-between;
       box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-      text-decoration: none;
       cursor: pointer;
       border: 2px solid transparent;
       transition: border-color 0.2s;
@@ -154,9 +153,22 @@
       font-weight: bold;
       cursor: pointer;
       box-shadow: 0 4px 16px rgba(108,63,197,0.3);
+      margin-bottom: 12px;
     }
 
     .btn-all:active { opacity: 0.85; }
+
+    .next-site-info {
+      text-align: center;
+      font-size: 13px;
+      color: #888;
+      margin-bottom: 20px;
+    }
+
+    .next-site-info span {
+      color: #6c3fc5;
+      font-weight: bold;
+    }
 
     .keyword-display {
       text-align: center;
@@ -241,15 +253,19 @@
 
   </div>
 
-  <button class="btn-all" onclick="openAll()">🚀 全サイトを一気に開く</button>
+  <!-- 順番に開くボタン -->
+  <button class="btn-all" onclick="openNext()">🚀 <span id="nextBtnLabel">Amazon から順番に開く</span></button>
+  <div class="next-site-info">次に開くサイト：<span id="nextSiteName">Amazon</span></div>
 
   <script>
-    const urls = {
-      amazon:  kw => `https://www.amazon.co.jp/s?k=${encodeURIComponent(kw)}`,
-      rakuten: kw => `https://search.rakuten.co.jp/search/mall/${encodeURIComponent(kw)}/`,
-      yahoo:   kw => `https://shopping.yahoo.co.jp/search?p=${encodeURIComponent(kw)}&tab=all`,
-      mercari: kw => `https://jp.mercari.com/search?keyword=${encodeURIComponent(kw)}`,
-    };
+    const siteList = [
+      { key: 'amazon',  name: 'Amazon',           url: kw => `https://www.amazon.co.jp/s?k=${encodeURIComponent(kw)}` },
+      { key: 'rakuten', name: '楽天市場',           url: kw => `https://search.rakuten.co.jp/search/mall/${encodeURIComponent(kw)}/` },
+      { key: 'yahoo',   name: 'Yahoo!ショッピング', url: kw => `https://shopping.yahoo.co.jp/search?p=${encodeURIComponent(kw)}&tab=all` },
+      { key: 'mercari', name: 'メルカリ',           url: kw => `https://jp.mercari.com/search?keyword=${encodeURIComponent(kw)}` },
+    ];
+
+    let nextIndex = 0;
 
     function getKeyword() {
       return document.getElementById('keyword').value.trim() || 'ボンボンドロップシール';
@@ -260,19 +276,33 @@
       document.getElementById('currentKeyword').textContent = kw;
     }
 
-    function openSite(site) {
-      const kw = getKeyword();
+    function openSite(key) {
+      const kw   = getKeyword();
       document.getElementById('currentKeyword').textContent = kw;
-      window.open(urls[site](kw), '_blank');
+      const site = siteList.find(s => s.key === key);
+      if (site) location.href = site.url(kw);
     }
 
-    function openAll() {
-      const kw = getKeyword();
+    function openNext() {
+      const kw   = getKeyword();
       document.getElementById('currentKeyword').textContent = kw;
-      Object.values(urls).forEach(fn => {
-        window.open(fn(kw), '_blank');
-      });
+      const site = siteList[nextIndex];
+      location.href = site.url(kw);
+
+      nextIndex = (nextIndex + 1) % siteList.length;
+      updateNextLabel();
     }
+
+    function updateNextLabel() {
+      const next = siteList[nextIndex];
+      document.getElementById('nextSiteName').textContent  = next.name;
+      document.getElementById('nextBtnLabel').textContent  =
+        nextIndex === 0
+          ? 'Amazon から順番に開く'
+          : `次は ${next.name} を開く`;
+    }
+
+    updateNextLabel();
   </script>
 </body>
 </html>
