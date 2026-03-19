@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ボンボンドロップシール 在庫検索</title>
+  <link rel="apple-touch-icon" href="IMG_8373.png">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -238,17 +239,6 @@
       <div class="site-arrow">›</div>
     </div>
 
-    <div class="site-card" onclick="openSite('paypay')">
-      <div class="site-left">
-        <div class="site-icon" style="background:#fff8f0;">💰</div>
-        <div>
-          <div class="site-name">ヤフーフリマ</div>
-          <div class="site-desc">フリマ・中古をチェック</div>
-        </div>
-      </div>
-      <div class="site-arrow">›</div>
-    </div>
-
   </div>
 
   <button class="btn-all" onclick="openAll()">🚀 全サイトを一気に開く</button>
@@ -259,7 +249,6 @@
       rakuten: kw => `https://search.rakuten.co.jp/search/mall/${encodeURIComponent(kw)}/`,
       yahoo:   kw => `https://shopping.yahoo.co.jp/search?p=${encodeURIComponent(kw)}&tab=all`,
       mercari: kw => `https://jp.mercari.com/search?keyword=${encodeURIComponent(kw)}`,
-      paypay:  kw => `https://flea.yahoo.co.jp/search/item/list?q=${encodeURIComponent(kw)}`,
     };
 
     function getKeyword() {
