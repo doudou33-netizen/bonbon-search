@@ -168,14 +168,6 @@
       color: #6c3fc5;
       font-weight: bold;
     }
-
-    .section-divider {
-      font-size: 12px;
-      color: #aaa;
-      text-align: center;
-      margin: 4px 0 12px;
-      letter-spacing: 1px;
-    }
   </style>
 </head>
 <body>
@@ -316,11 +308,11 @@
       rakuten:   kw => `https://search.rakuten.co.jp/search/mall/${encodeURIComponent(kw)}/`,
       yahoo:     kw => `https://shopping.yahoo.co.jp/search?p=${encodeURIComponent(kw)}&tab=all`,
       yodobashi: kw => `https://www.yodobashi.com/?word=${encodeURIComponent(kw)}`,
-      narumiya:  kw => `https://www.narumiyaonline.jp/shop/goods/search.aspx?search=${encodeURIComponent(kw)}`,
-      spinns:    kw => `https://spinns.com/search?type=product&q=${encodeURIComponent(kw)}`,
-      coolia:    kw => `https://www.coolia.jp/search?q=${encodeURIComponent(kw)}`,
+      narumiya:  kw => `https://www.narumiya-online.jp/shop/goods/search.aspx?search=${encodeURIComponent(kw)}`,
+      spinns:    kw => `https://www.spinns.jp/search?q=${encodeURIComponent(kw)}`,
+      coolia:    kw => `https://qlia.shop/search?q=${encodeURIComponent(kw)}`,
       mercari:   kw => `https://jp.mercari.com/search?keyword=${encodeURIComponent(kw)}`,
-      yahooflea: kw => `https://flea.yahoo.co.jp/search/item/list?q=${encodeURIComponent(kw)}`,
+      yahooflea: kw => `https://paypayfleamarket.yahoo.co.jp/search?query=${encodeURIComponent(kw)}`,
     };
 
     function getKeyword() {
